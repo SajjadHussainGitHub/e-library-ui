@@ -1,0 +1,45 @@
+.dashboard-content {
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  h2 {
+    font-size: 2rem;
+    font-weight: 500;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  h3 {
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    color: #555;
+  }
+  
+  .recommended-books {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .book-card {
+    width: 150px;
+    height: 200px;
+    background-color: #e6f7ff;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    border: 1px solid #1890ff;
+    transition: transform 0.2s ease;
+  }
+  
+  .book-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }

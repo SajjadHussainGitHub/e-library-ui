@@ -1,0 +1,360 @@
+/* Full-page container with a colorful gradient background for the login page */
+.main-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(45deg, #ff6b6b, #4bc0c8, #fce38a, #eaffd0);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  font-family: 'Roboto', sans-serif;
+  padding: 20px;
+}
+
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Container for the forms */
+.form-wrapper {
+  max-width: 900px;
+  width: 100%;
+}
+
+/* Material Card with a semi-transparent white background */
+mat-card {
+  padding: 40px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Centered heading for the main title */
+mat-card-title h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 300;
+  margin-bottom: 30px;
+  color: #2c3e50;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* Flexbox container for the two form sections */
+.form-sections-container {
+  display: flex;
+  gap: 60px;
+}
+
+/* Style for each individual form section */
+.form-section {
+  flex: 1;
+  padding: 0 10px;
+}
+
+/* Add a subtle vertical divider between the two forms */
+.form-sections-container .form-section:first-child {
+  border-right: 1px solid #e0e0e0;
+}
+
+/* Heading for each form */
+h3 {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 400;
+  margin-bottom: 25px;
+  color: #34495e;
+}
+
+/* Style for the form fields */
+mat-form-field {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+/* Style for the primary buttons */
+button:where([mat-raised-button]) {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 1.1rem;
+  margin-top: 25px;
+  font-weight: 500;
+  border-radius: 50px;
+  background-color: #3498db;
+  color: white;
+  box-shadow: 0 4px 15px rgba(52, 152, 219, 0.4);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Button hover effect */
+button:where([mat-raised-button]):hover {
+  background-color: #2980b9;
+  box-shadow: 0 6px 20px rgba(41, 128, 185, 0.5);
+}
+
+/* Style for the "Forgot Password" link */
+.forgot-password {
+  display: block;
+  text-align: center;
+  margin-top: 15px;
+  color: #3498db;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+.forgot-password:hover {
+  color: #2980b9;
+  text-decoration: underline;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+  .form-sections-container {
+    flex-direction: column;
+    gap: 30px;
+  }
+  
+  .form-sections-container .form-section:first-child {
+    border-right: none;
+  }
+}
+
+.dashboard-container {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f0f2f5;
+  color: #333;
+}
+
+/* Sidebar styling */
+.sidebar {
+  width: 250px;
+  background: linear-gradient(180deg, #4bc0c8, #1890ff);
+  color: #fff;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  transition: width 0.3s ease, padding 0.3s ease;
+  flex-shrink: 0;
+}
+
+/* New container for the header, content area, and bottom bar */
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  background-color: #f0f2f5;
+}
+
+/* New top bar for the button and title */
+.header-top-bar {
+  display: flex;
+  align-items: center;
+  padding: 15px 30px;
+  background: linear-gradient(90deg, #e3f2fd, #f5f8fa);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+  z-index: 99;
+  flex-shrink: 0;
+}
+
+/* Content Area */
+.content-area {
+  flex-grow: 1;
+  padding: 30px;
+  overflow-y: auto;
+}
+
+/* Bottom Bar */
+.bottom-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 30px;
+  background: linear-gradient(90deg, #4bc0c8, #1890ff);
+  color: #fff;
+  font-size: 0.9rem;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+}
+
+/* Other CSS rules... */
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.logo-container .logo-text {
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: #fff;
+  margin: 0;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+}
+
+.logo-container .logo-icon {
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: #fff;
+  margin: 0;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+}
+
+.logo-divider {
+  width: 100%;
+  border: 0;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.3);
+  margin: 15px 0 25px 0;
+  transition: width 0.3s ease, margin 0.3s ease;
+}
+
+.nav-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-links li a {
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1rem;
+  border-radius: 8px;
+  margin-bottom: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.nav-links li a:hover,
+.nav-links li a.active {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.nav-links mat-icon {
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+.dashboard-container.sidebar-collapsed .sidebar {
+  width: 80px;
+  padding: 20px 0;
+}
+
+.dashboard-container.sidebar-collapsed .logo-container {
+  justify-content: center;
+}
+
+.dashboard-container.sidebar-collapsed .logo-divider {
+  width: 50%;
+  margin: 15px auto 25px auto;
+}
+
+.dashboard-container.sidebar-collapsed .nav-links li a span {
+  width: 0;
+  overflow: hidden;
+}
+
+.dashboard-container.sidebar-collapsed .nav-links li a {
+  justify-content: center;
+}
+
+.dashboard-container.sidebar-collapsed .nav-links mat-icon {
+  margin-right: 0;
+}
+
+.header-top-bar .toggle-btn {
+  color: #1890ff;
+  margin-right: 20px;
+}
+
+.header-top-bar .header-title p {
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: #333;
+  margin: 0;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.header-right mat-icon-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-left: 10px;
+}
+
+.header-right mat-icon-button:hover {
+  background-color: #d1e2f6;
+  transform: scale(1.1);
+}
+
+.header-right mat-icon {
+  font-size: 24px;
+  color: #1a73e8;
+  transition: color 0.3s ease;
+}
+
+.header-right mat-icon-button:hover mat-icon {
+  color: #0b4f8d;
+}
+
+.header-right .logout-btn mat-icon {
+  color: #e74c3c;
+}
+
+.header-right .logout-btn:hover mat-icon {
+  color: #c0392b;
+}
+
+.bottom-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 30px;
+  background: linear-gradient(90deg, #4bc0c8, #1890ff);
+  color: #fff;
+  font-size: 0.9rem;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.bottom-bar .copyright {
+  font-weight: 300;
+}
+
+.bottom-bar .social-links a {
+  color: #fff;
+  margin-left: 15px;
+  transition: transform 0.2s ease;
+}
+
+.bottom-bar .social-links a:hover {
+  transform: translateY(-3px);
+  color: #c0392b;
+}
+
+.bottom-bar .social-links mat-icon {
+  font-size: 20px;
+}

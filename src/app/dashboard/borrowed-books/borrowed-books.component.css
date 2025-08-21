@@ -1,0 +1,77 @@
+/* Card styling for the borrowed books section */
+.borrowed-books-card {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  overflow: hidden; /* Ensures borders are rounded correctly */
+}
+
+/* Section title styling */
+.section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 0;
+}
+
+mat-card-subtitle p {
+  font-size: 1rem;
+  color: #7f8c8d;
+}
+
+/* Mat-table styling */
+.mat-elevation-z2 {
+  box-shadow: none; /* We control the shadow on the parent card */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+
+
+/* Cell styling for rows */
+td.mat-cell {
+  padding: 16px 24px;
+  border-bottom: 1px solid #eef1f4;
+}
+
+/* Alternating row colors (Zebra striping) */
+tr.mat-row:nth-child(even) {
+  background-color: #fafbfd;
+}
+
+/* Hover effect on rows */
+tr.mat-row:hover {
+  background-color: #f1f5fa;
+  transform: scale(1.01);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease-in-out;
+}
+
+/* Return button styling */
+.return-btn {
+  background-color: #2980b9;
+  color: #fff;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 50px;
+  box-shadow: 0 2px 8px rgba(41, 128, 185, 0.2);
+  transition: transform 0.2s ease;
+}
+
+.return-btn:hover {
+  background-color: #3498db;
+  transform: translateY(-2px);
+}
+/* Header cell styling with a new color gradient */
+th.mat-header-cell {
+  background: linear-gradient(to right, #ff9966, #ff5e62);
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 18px 24px;
+  border-bottom: 2px solid #ff803d;
+}

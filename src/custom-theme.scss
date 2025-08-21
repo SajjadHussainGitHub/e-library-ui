@@ -1,0 +1,23 @@
+@use '@angular/material' as mat;
+@include mat.core(); // Include Material's core styles
+
+// Define a custom primary palette
+$my-custom-primary: mat.define-palette(mat.$blue-palette, 800);
+
+// Define a custom accent palette
+$my-custom-accent: mat.define-palette(mat.$light-blue-palette, A400);
+
+// Define a custom warn palette
+$my-custom-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object with a light theme
+$my-custom-theme: mat.define-light-theme((
+  color: (
+    primary: $my-custom-primary,
+    accent: $my-custom-accent,
+    warn: $my-custom-warn,
+  )
+));
+
+// Apply the custom theme
+@include mat.all-component-themes($my-custom-theme);
