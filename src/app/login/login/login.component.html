@@ -1,75 +1,82 @@
 <div class="main-container">
-    <div class="form-wrapper">
-      <mat-card>
-        <mat-card-title>
-          <h2>e Library</h2>
-        </mat-card-title>
-        <mat-card-content class="form-sections-container">
-          
-          <div class="form-section">
-            <h3>Login</h3>
-            <form [formGroup]="loginForm" (ngSubmit)="login()">
-              <mat-form-field appearance="outline">
-                <mat-label>Email</mat-label>
-                <input matInput type="email" formControlName="email">
-              </mat-form-field>
-  
-              <mat-form-field appearance="outline">
-                <mat-label>Password</mat-label>
-                <input matInput type="password" formControlName="password">
-              </mat-form-field>
-  
-              <mat-form-field appearance="outline">
-                <mat-label>Login as</mat-label>
-                <mat-select formControlName="role">
-                  <mat-option value="Student">Student</mat-option>
-                  <mat-option value="Teacher">Teacher</mat-option>
-                  <mat-option value="Admin">Admin</mat-option>
-                </mat-select>
-              </mat-form-field>
-  
-              <button mat-raised-button color="primary" type="submit">Login</button>
-              <a href="#" class="forgot-password">Forgot password?</a>
-            </form>
-          </div>
-  
-          <div class="form-section">
-            <h3>Registration</h3>
-            <form [formGroup]="registerForm" (ngSubmit)="register()">
-              <mat-form-field appearance="outline">
-                <mat-label>Full name</mat-label>
-                <input matInput type="text" formControlName="fullName">
-              </mat-form-field>
-  
-              <mat-form-field appearance="outline">
-                <mat-label>Email</mat-label>
-                <input matInput type="email" formControlName="email">
-              </mat-form-field>
-  
-              <mat-form-field appearance="outline">
-                <mat-label>Password</mat-label>
-                <input matInput type="password" formControlName="password">
-              </mat-form-field>
-  
-              <mat-form-field appearance="outline">
-                <mat-label>Confirm password</mat-label>
-                <input matInput type="password" formControlName="confirmPassword">
-              </mat-form-field>
-  
-              <mat-form-field appearance="outline">
-                <mat-label>Register as</mat-label>
-                <mat-select formControlName="role">
-                  <mat-option value="Student">Student</mat-option>
-                  <mat-option value="Teacher">Teacher</mat-option>
-                  <mat-option value="Admin">Admin</mat-option>
-                </mat-select>
-              </mat-form-field>
-  
-              <button mat-raised-button color="primary" type="submit">Register</button>
-            </form>
-          </div>
-  
-        </mat-card-content>
+  <div class="form-wrapper">
+    <section class="form-sections-container">
+      <article class="intro-panel">
+        <span class="brand-chip">eLibrary</span>
+        <h2>Modern Library Experience</h2>
+        <p>Read, borrow, manage collections, and run admin operations from one responsive portal.</p>
+        <ul>
+          <li>Real-time catalog and borrowing workflow</li>
+          <li>Community (teachers &amp; admins) and saved lists</li>
+          <li>Admin tools to upload and manage books (admins only)</li>
+        </ul>
+        <button mat-stroked-button type="button" class="admin-quick-btn" (click)="loginAsAdmin()">
+          Open Admin Panel
+        </button>
+      </article>
+
+      <mat-card class="form-section">
+        <h3>Sign In</h3>
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" formControlName="email">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" formControlName="password">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Login as</mat-label>
+            <mat-select formControlName="role">
+              <mat-option value="Student">Student</mat-option>
+              <mat-option value="Teacher">Teacher</mat-option>
+              <mat-option value="Admin">Admin</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <button mat-raised-button color="primary" type="submit">Login</button>
+          <a href="#" class="forgot-password">Forgot password?</a>
+        </form>
       </mat-card>
-    </div>
+
+      <mat-card class="form-section">
+        <h3>Create Account</h3>
+        <form [formGroup]="registerForm" (ngSubmit)="register()">
+          <mat-form-field appearance="outline">
+            <mat-label>Full name</mat-label>
+            <input matInput type="text" formControlName="fullName">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" formControlName="email">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" formControlName="password">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Confirm password</mat-label>
+            <input matInput type="password" formControlName="confirmPassword">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Register as</mat-label>
+            <mat-select formControlName="role">
+              <mat-option value="Student">Student</mat-option>
+              <mat-option value="Teacher">Teacher</mat-option>
+              <mat-option value="Admin">Admin</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <button mat-raised-button color="primary" type="submit">Register</button>
+        </form>
+      </mat-card>
+    </section>
   </div>
+</div>

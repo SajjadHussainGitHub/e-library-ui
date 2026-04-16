@@ -1,26 +1,46 @@
-/* Card styling for the borrowed books section */
 .borrowed-books-card {
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-  border-radius: 12px;
-  overflow: hidden; /* Ensures borders are rounded correctly */
+  box-shadow: 0 10px 24px rgba(18, 41, 70, 0.08);
+  border-radius: 14px;
+  border: 1px solid #e6edf6;
 }
 
-/* Section title styling */
 .section-title {
-  font-size: 2rem;
-  font-weight: 700;
-  color: #2c3e50;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1f3551;
   margin-bottom: 0;
 }
 
 mat-card-subtitle p {
-  font-size: 1rem;
-  color: #7f8c8d;
+  margin: 0.5rem 0 0;
+  color: #5f748f;
 }
 
-/* Mat-table styling */
 .mat-elevation-z2 {
-  box-shadow: none; /* We control the shadow on the parent card */
+  box-shadow: none;
+}
+
+.action-message {
+  margin: 0 0 0.9rem;
+  background: #e8f2ff;
+  color: #1d4f84;
+  border: 1px solid #cde2f8;
+  border-radius: 0.7rem;
+  padding: 0.6rem 0.8rem;
+  font-size: 0.88rem;
+}
+
+.empty-state {
+  border: 1px dashed #bfd4ea;
+  border-radius: 12px;
+  padding: 1rem;
+  text-align: center;
+  color: #4f6782;
+  margin-bottom: 0.8rem;
+}
+
+.empty-state mat-icon {
+  color: #1e5e99;
 }
 
 table {
@@ -28,50 +48,94 @@ table {
   border-collapse: collapse;
 }
 
-
-
-/* Cell styling for rows */
-td.mat-cell {
-  padding: 16px 24px;
-  border-bottom: 1px solid #eef1f4;
+td.mat-cell,
+th.mat-header-cell {
+  padding: 0.95rem 1rem;
+  border-bottom: 1px solid #edf2f8;
 }
 
-/* Alternating row colors (Zebra striping) */
-tr.mat-row:nth-child(even) {
-  background-color: #fafbfd;
+th.mat-header-cell {
+  color: #244b74;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  background: #f3f8fe;
 }
 
-/* Hover effect on rows */
 tr.mat-row:hover {
-  background-color: #f1f5fa;
-  transform: scale(1.01);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-  transition: all 0.2s ease-in-out;
+  background-color: #f9fbff;
 }
 
-/* Return button styling */
 .return-btn {
-  background-color: #2980b9;
-  color: #fff;
+  background-color: #205f9a;
+  color: #ffffff;
   font-weight: 500;
-  padding: 8px 16px;
-  border-radius: 50px;
-  box-shadow: 0 2px 8px rgba(41, 128, 185, 0.2);
-  transition: transform 0.2s ease;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
 }
 
 .return-btn:hover {
-  background-color: #3498db;
-  transform: translateY(-2px);
+  background-color: #174e81;
 }
-/* Header cell styling with a new color gradient */
-th.mat-header-cell {
-  background: linear-gradient(to right, #ff9966, #ff5e62);
-  color: #fff;
+
+.renew-btn {
+  border-radius: 8px;
+  margin-right: 0.45rem;
+}
+
+.status-pill {
+  border-radius: 999px;
+  padding: 0.3rem 0.65rem;
+  font-size: 0.78rem;
   font-weight: 600;
-  font-size: 1rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  padding: 18px 24px;
-  border-bottom: 2px solid #ff803d;
+}
+
+.status-pill.on-time {
+  background: #e6f8ef;
+  color: #0f7241;
+}
+
+.status-pill.due-soon {
+  background: #fff3d9;
+  color: #946307;
+}
+
+.status-pill.overdue {
+  background: #fde7e7;
+  color: #9d2e2e;
+}
+
+.mobile-cards {
+  display: none;
+}
+
+.borrowed-mobile-card {
+  border: 1px solid #e8eef7;
+  border-radius: 12px;
+  padding: 0.9rem;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.borrowed-mobile-card h3,
+.borrowed-mobile-card p {
+  margin: 0;
+}
+
+@media (max-width: 820px) {
+  .desktop-table {
+    display: none;
+  }
+
+  .mobile-cards {
+    display: grid;
+    gap: 0.8rem;
+  }
+
+  .renew-btn {
+    margin-right: 0;
+  }
 }

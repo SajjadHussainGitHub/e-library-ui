@@ -1,6 +1,23 @@
-<div class="dashboard-content">
-    <h2>Community</h2>
-    <div class="section">
-      <p>Welcome to the community section. Here you can find book clubs, discussion forums, and events.</p>
+<section class="community-page">
+  <div class="community-hero">
+    <h2>Reader Community</h2>
+    <p>Join clubs, attend events, and connect with readers across genres and interests.</p>
+  </div>
+
+  <div class="highlights">
+    <article *ngFor="let highlight of highlights">{{ highlight }}</article>
+  </div>
+
+  <div class="events-wrap">
+    <h3>Upcoming Programs</h3>
+    <div class="events-grid">
+      <article class="event-card" *ngFor="let event of events">
+        <h4>{{ event.title }}</h4>
+        <p class="schedule">{{ event.schedule }}</p>
+        <p class="audience">{{ event.audience }}</p>
+        <p>{{ event.description }}</p>
+        <button type="button">Join Program</button>
+      </article>
     </div>
   </div>
+</section>

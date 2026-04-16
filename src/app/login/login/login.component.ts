@@ -7,9 +7,11 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { Router } from '@angular/router';
+import { AuthService, type UserRole } from '../../core/auth/auth.service';
 
 @Component({
   selector: 'app-login',
+  standalone: true,
   imports: [ReactiveFormsModule,
     MatCardModule,
     MatFormFieldModule,
@@ -24,7 +26,11 @@ export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   registerForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private router: Router) {}
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private auth: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -43,20 +49,29 @@ export class LoginComponent implements OnInit {
   }
 
   login(): void {
-    // This is a dummy login check.
-    // In a real application, you would send a request to a server.
-    if (this.loginForm.valid) {
-      console.log('Login successful! Navigating to dashboard...');
-      // Navigate to the dashboard route
-      this.router.navigate(['/dashboard']);
-    } else {
-      console.log('Login failed. Invalid form.');
+    if (this.loginForm.invalid) {
+      this.loginForm.markAllAsTouched();
+      return;
     }
+    const { email, role } = this.loginForm.value as { email: string; role: UserRole };
+    this.auth.login(email, role);
+    void this.navigateAfterLogin(role);
+  }
+
+  /** Demo shortcut: sign in as admin and open the admin panel. */
+  loginAsAdmin(): void {
+    this.auth.login('admin@elibrary.edu', 'Admin');
+    void this.navigateAfterLogin('Admin');
   }
 
   register(): void {
     if (this.registerForm.valid) {
       console.log('Registration data:', this.registerForm.value);
     }
+  }
+
+  private async navigateAfterLogin(role: UserRole): Promise<void> {
+    const target = role === 'Admin' ? '/dashboard/admin' : '/dashboard/catalog';
+    await this.router.navigateByUrl(target);
   }
 }

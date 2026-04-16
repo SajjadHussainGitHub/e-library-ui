@@ -1,0 +1,95 @@
+<section class="admin-page">
+  <mat-card class="admin-form-card">
+    <h2>Admin Panel</h2>
+    <p>Upload new books and keep catalog content updated.</p>
+
+    <form [formGroup]="bookForm" (ngSubmit)="addBook()" class="book-form">
+      <mat-form-field appearance="outline">
+        <mat-label>Book Title</mat-label>
+        <input matInput formControlName="title" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Author</mat-label>
+        <input matInput formControlName="author" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Subject</mat-label>
+        <mat-select formControlName="subject">
+          <mat-option *ngFor="let s of bookSubjects" [value]="s">{{ s }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Genre</mat-label>
+        <input matInput formControlName="genre" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Publication Year</mat-label>
+        <input matInput type="number" formControlName="year" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Rating (1-5)</mat-label>
+        <input matInput type="number" step="0.1" formControlName="rating" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Format</mat-label>
+        <mat-select formControlName="format">
+          <mat-option value="eBook">eBook</mat-option>
+          <mat-option value="Print">Print</mat-option>
+          <mat-option value="Audiobook">Audiobook</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full">
+        <mat-label>Summary</mat-label>
+        <textarea matInput rows="3" formControlName="summary"></textarea>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full">
+        <mat-label>Cover Image URL (optional)</mat-label>
+        <input matInput formControlName="coverImage" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Featured Book</mat-label>
+        <mat-select formControlName="isFeatured">
+          <mat-option value="Yes">Yes</mat-option>
+          <mat-option value="No">No</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button mat-flat-button color="primary" type="submit">Upload Book</button>
+    </form>
+
+    <p class="action-message" *ngIf="actionMessage">{{ actionMessage }}</p>
+  </mat-card>
+
+  <mat-card class="admin-list-card">
+    <h3>Catalog Management</h3>
+    <p>{{ catalogBooks.length }} books in catalog</p>
+
+    <div class="book-list">
+      <article *ngFor="let book of catalogBooks" class="book-item">
+        <div class="book-item-main">
+          <div class="book-thumb">
+            <img *ngIf="book.coverImage; else thumbFallback" [src]="book.coverImage" [alt]="book.title + ' cover'" />
+            <ng-template #thumbFallback>
+              <span>{{ book.title.charAt(0) }}</span>
+            </ng-template>
+          </div>
+          <strong>{{ book.title }}</strong>
+          <p>{{ book.author }} • {{ book.subject }} • {{ book.genre }} • {{ book.year }}</p>
+        </div>
+        <button mat-stroked-button color="warn" type="button" (click)="deleteBook(book)">
+          <mat-icon>delete</mat-icon>
+          Remove
+        </button>
+      </article>
+    </div>
+  </mat-card>
+</section>

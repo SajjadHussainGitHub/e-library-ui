@@ -4,38 +4,86 @@
       <h2 class="section-title">Borrowed Books</h2>
     </mat-card-title>
     <mat-card-subtitle>
-      <p>Here are the books you currently have checked out.</p>
+      <p>Track due dates, renewal counts, and return status at a glance.</p>
     </mat-card-subtitle>
   </mat-card-header>
+
   <mat-card-content>
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z2">
+    <p class="action-message" *ngIf="actionMessage">{{ actionMessage }}</p>
+    <div class="empty-state" *ngIf="dataSource.length === 0">
+      <mat-icon>menu_book</mat-icon>
+      <p>No borrowed books yet. Borrow books from the catalog to see them here.</p>
+    </div>
 
-      <ng-container matColumnDef="title">
-        <th mat-header-cell *matHeaderCellDef> Title </th>
-        <td mat-cell *matCellDef="let element"> {{element.title}} </td>
-      </ng-container>
+    <div class="desktop-table">
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z2" *ngIf="dataSource.length > 0">
+        <ng-container matColumnDef="title">
+          <th mat-header-cell *matHeaderCellDef>Title</th>
+          <td mat-cell *matCellDef="let element">{{ element.title }}</td>
+        </ng-container>
 
-      <ng-container matColumnDef="author">
-        <th mat-header-cell *matHeaderCellDef> Author </th>
-        <td mat-cell *matCellDef="let element"> {{element.author}} </td>
-      </ng-container>
+        <ng-container matColumnDef="author">
+          <th mat-header-cell *matHeaderCellDef>Author</th>
+          <td mat-cell *matCellDef="let element">{{ element.author }}</td>
+        </ng-container>
 
-      <ng-container matColumnDef="dueDate">
-        <th mat-header-cell *matHeaderCellDef> Due Date </th>
-        <td mat-cell *matCellDef="let element"> {{element.dueDate | date}} </td>
-      </ng-container>
+        <ng-container matColumnDef="dueDate">
+          <th mat-header-cell *matHeaderCellDef>Due Date</th>
+          <td mat-cell *matCellDef="let element">{{ element.dueDate | date:'mediumDate' }}</td>
+        </ng-container>
 
-      <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef> Actions </th>
-        <td mat-cell *matCellDef="let element">
-          <button mat-flat-button color="primary" class="return-btn">
-            Return
-          </button>
-        </td>
-      </ng-container>
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef>Status</th>
+          <td mat-cell *matCellDef="let element">
+            <span class="status-pill" [ngClass]="element.status.toLowerCase().replace(' ', '-')">{{ element.status }}</span>
+          </td>
+        </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
+        <ng-container matColumnDef="renewalsLeft">
+          <th mat-header-cell *matHeaderCellDef>Renewals Left</th>
+          <td mat-cell *matCellDef="let element">{{ element.renewalsLeft }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef>Actions</th>
+          <td mat-cell *matCellDef="let element">
+            <button
+              mat-stroked-button
+              color="primary"
+              class="renew-btn"
+              (click)="renewBook(element)"
+              [disabled]="element.renewalsLeft === 0"
+            >
+              <mat-icon>autorenew</mat-icon>
+              Renew
+            </button>
+            <button mat-flat-button color="primary" class="return-btn" (click)="returnBook(element)">
+              <mat-icon>assignment_return</mat-icon>
+              Return
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+
+    <div class="mobile-cards">
+      <article class="borrowed-mobile-card" *ngFor="let book of dataSource">
+        <h3>{{ book.title }}</h3>
+        <p>{{ book.author }}</p>
+        <p>Due: {{ book.dueDate | date:'mediumDate' }}</p>
+        <span class="status-pill" [ngClass]="book.status.toLowerCase().replace(' ', '-')">{{ book.status }}</span>
+        <button mat-stroked-button color="primary" class="renew-btn" (click)="renewBook(book)" [disabled]="book.renewalsLeft === 0">
+          <mat-icon>autorenew</mat-icon>
+          Renew
+        </button>
+        <button mat-flat-button color="primary" class="return-btn" (click)="returnBook(book)">
+          <mat-icon>assignment_return</mat-icon>
+          Return Book
+        </button>
+      </article>
+    </div>
   </mat-card-content>
 </mat-card>

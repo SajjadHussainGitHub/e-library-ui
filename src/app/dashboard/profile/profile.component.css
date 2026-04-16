@@ -1,0 +1,67 @@
+.profile-page {
+  display: grid;
+}
+
+.profile-card {
+  background: #fff;
+  border: 1px solid #e4ebf5;
+  border-radius: 14px;
+  box-shadow: 0 10px 20px rgba(17, 37, 64, 0.06);
+  padding: 1.1rem;
+  display: grid;
+  gap: 1.1rem;
+}
+
+.identity {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #2e6faa, #1e4f87);
+  color: #fff;
+  font-weight: 700;
+}
+
+.identity h2,
+.identity p {
+  margin: 0;
+}
+
+.identity p {
+  color: #5f748f;
+}
+
+.meta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.75rem;
+}
+
+.meta-grid div {
+  border: 1px solid #e7eef7;
+  border-radius: 10px;
+  padding: 0.7rem;
+}
+
+.meta-grid span,
+.bio span {
+  display: block;
+  color: #69809b;
+  font-size: 0.8rem;
+}
+
+.meta-grid strong {
+  color: #1b3554;
+}
+
+.bio p {
+  margin: 0.4rem 0 0;
+  color: #4f6782;
+}

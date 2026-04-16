@@ -6,20 +6,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-
-
-export interface BorrowedBook {
-  title: string;
-  author: string;
-  dueDate: Date;
-}
-
-const ELEMENT_DATA: BorrowedBook[] = [
-  {title: 'Book 1', author: 'Author 1', dueDate: new Date('2024-01-15')},
-  {title: 'Book 2', author: 'Author 2', dueDate: new Date('2024-02-20')},
-  {title: 'Book 3', author: 'Author 3', dueDate: new Date('2024-03-10')},
-  // Add more books here
-];
+import { BorrowedBook, LibraryService } from '../library.service';
 
 @Component({
   selector: 'app-borrowed-books',
@@ -35,8 +22,29 @@ const ELEMENT_DATA: BorrowedBook[] = [
   styleUrls: ['./borrowed-books.component.css'],
 })
 export class BorrowedBooksComponent {
+  displayedColumns: string[] = ['title', 'author', 'dueDate', 'status', 'renewalsLeft', 'actions'];
+  dataSource: BorrowedBook[] = [];
+  actionMessage = '';
 
-   displayedColumns: string[] = ['title', 'author', 'dueDate', 'actions'];
-  dataSource = ELEMENT_DATA;
+  constructor(private libraryService: LibraryService) {
+    this.refreshBorrowedBooks();
+  }
 
+  returnBook(book: BorrowedBook): void {
+    this.libraryService.returnBook(book);
+    this.actionMessage = `"${book.title}" was returned successfully.`;
+    this.refreshBorrowedBooks();
+  }
+
+  renewBook(book: BorrowedBook): void {
+    const renewed = this.libraryService.renewBook(book);
+    this.actionMessage = renewed
+      ? `"${book.title}" has been renewed for 7 more days.`
+      : `"${book.title}" cannot be renewed anymore.`;
+    this.refreshBorrowedBooks();
+  }
+
+  private refreshBorrowedBooks(): void {
+    this.dataSource = this.libraryService.getBorrowedBooks();
+  }
 }

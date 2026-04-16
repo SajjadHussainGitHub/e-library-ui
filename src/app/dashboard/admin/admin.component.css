@@ -1,0 +1,112 @@
+.admin-page {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 1rem;
+}
+
+.admin-form-card,
+.admin-list-card {
+  border: 1px solid #e4ebf5;
+  border-radius: 14px;
+  box-shadow: 0 10px 20px rgba(17, 37, 64, 0.06);
+}
+
+.admin-form-card h2,
+.admin-form-card p,
+.admin-list-card h3,
+.admin-list-card p {
+  margin-top: 0;
+}
+
+.admin-form-card p,
+.admin-list-card p {
+  color: #5f748f;
+}
+
+.book-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.book-form .full {
+  grid-column: 1 / -1;
+}
+
+.book-form button {
+  width: fit-content;
+  min-width: 140px;
+}
+
+.action-message {
+  margin: 0.75rem 0 0;
+  color: #1d4f84;
+  background: #e8f2ff;
+  border: 1px solid #cde2f8;
+  border-radius: 8px;
+  padding: 0.55rem 0.75rem;
+}
+
+.book-list {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.book-item {
+  border: 1px solid #e7eef7;
+  border-radius: 10px;
+  padding: 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.book-item-main {
+  display: flex;
+  gap: 0.65rem;
+  align-items: center;
+}
+
+.book-thumb {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #edf3fb;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.book-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.book-thumb span {
+  font-weight: 700;
+  color: #3a5f88;
+}
+
+.book-item p {
+  margin: 0.2rem 0 0;
+}
+
+@media (max-width: 1024px) {
+  .admin-page {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .book-form {
+    grid-template-columns: 1fr;
+  }
+
+  .book-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

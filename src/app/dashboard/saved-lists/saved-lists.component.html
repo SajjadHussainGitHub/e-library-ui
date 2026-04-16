@@ -1,0 +1,14 @@
+<section class="saved-lists-page">
+  <article class="saved-lists-card">
+    <h2>Saved Lists</h2>
+    <p>Organize books into custom collections for faster access later.</p>
+
+    <div class="list-grid">
+      <article class="list-item" *ngFor="let list of lists">
+        <h3>{{ list.name }}</h3>
+        <p>{{ list.books }} books</p>
+        <span>{{ list.updated }}</span>
+      </article>
+    </div>
+  </article>
+</section>

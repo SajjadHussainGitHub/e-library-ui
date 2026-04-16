@@ -1,0 +1,35 @@
+<section class="profile-page">
+  <article class="profile-card">
+    <div class="identity">
+      <div class="avatar">LM</div>
+      <div>
+        <h2>{{ member.name }}</h2>
+        <p>{{ member.email }}</p>
+      </div>
+    </div>
+
+    <div class="meta-grid">
+      <div>
+        <span>Role</span>
+        <strong>{{ member.role }}</strong>
+      </div>
+      <div>
+        <span>Membership ID</span>
+        <strong>{{ member.membershipId }}</strong>
+      </div>
+      <div>
+        <span>Joined</span>
+        <strong>{{ member.joinedOn }}</strong>
+      </div>
+      <div>
+        <span>Location</span>
+        <strong>{{ member.city }}</strong>
+      </div>
+    </div>
+
+    <div class="bio">
+      <span>About</span>
+      <p>{{ member.bio }}</p>
+    </div>
+  </article>
+</section>

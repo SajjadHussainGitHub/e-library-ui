@@ -1,0 +1,21 @@
+<section class="preferences-page">
+  <article class="preferences-card">
+    <h2>Preferences</h2>
+    <p>Adjust your library experience and communication settings.</p>
+
+    <div class="preference-list">
+      <div class="preference-item" *ngFor="let preference of preferences; let i = index">
+        <div>
+          <h3>{{ preference.label }}</h3>
+          <p>{{ preference.description }}</p>
+        </div>
+        <button type="button" (click)="toggle(i)" [class.enabled]="preference.enabled">
+          {{ preference.enabled ? 'On' : 'Off' }}
+        </button>
+      </div>
+    </div>
+
+    <button type="button" class="save-btn" (click)="savePreferences()">Save Preferences</button>
+    <p class="action-message" *ngIf="actionMessage">{{ actionMessage }}</p>
+  </article>
+</section>

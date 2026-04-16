@@ -1,70 +1,108 @@
 <div class="dashboard-container" [ngClass]="{ 'sidebar-collapsed': isCollapsed }">
-  <div class="sidebar">
+  <aside class="sidebar">
     <div class="logo-container">
-      <div class="logo-inner">
-        <span *ngIf="isCollapsed" class="logo-icon">eL</span>
-        <p *ngIf="!isCollapsed" class="logo-text">eLibrary</p>
+      <span class="logo-mark">EL</span>
+      <div class="logo-copy" *ngIf="!isCollapsed">
+        <p class="logo-text">eLibrary</p>
+        <span class="logo-subtext">Digital Reading Space</span>
       </div>
     </div>
-    <hr class="logo-divider">
-    <ul class="nav-links">
-      <li>
-        <a routerLink="catalog" routerLinkActive="active">
-          <mat-icon>home</mat-icon> <span>Dashboard</span>
-        </a>
-      </li>
-      <li>
-        <a routerLink="catalog" routerLinkActive="active">
-          <mat-icon>library_books</mat-icon> <span>Catalog</span>
-        </a>
-      </li>
-      <li>
-        <a routerLink="borrowed-books" routerLinkActive="active">
-          <mat-icon>book</mat-icon> <span>Borrowed Books</span>
-        </a>
-      </li>
-      <li>
-        <a routerLink="community" routerLinkActive="active">
-          <mat-icon>groups</mat-icon> <span>Community</span>
-        </a>
-      </li>
-    </ul>
-  </div>
+
+    <nav>
+      <ul class="nav-links">
+        <li *ngFor="let item of sidebarNavItems">
+          <button
+            type="button"
+            [routerLink]="item.route"
+            routerLinkActive="active"
+            (click)="navigateTo(item.route)"
+          >
+            <mat-icon>{{ item.icon }}</mat-icon>
+            <span>{{ item.label }}</span>
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
   <div class="content-wrapper">
-    <div class="header-top-bar">
-      <button mat-icon-button (click)="toggleSidebar()" class="toggle-btn">
+    <header class="header-top-bar">
+      <button mat-icon-button (click)="toggleSidebar()" class="toggle-btn" aria-label="Toggle sidebar">
         <mat-icon>menu</mat-icon>
       </button>
       <div class="header-title">
-        <p>Welcome User!</p>
+        <span class="title-badge">Library Workspace</span>
+        <h1>{{ currentPageTitle }}</h1>
+        <p>{{ currentPageDescription }}</p>
       </div>
       <div class="header-right">
-        <button mat-icon-button class="notifications-btn">
+        <button
+          mat-icon-button
+          class="notifications-btn"
+          aria-label="Notifications"
+          [matBadge]="unreadNotifications"
+          [matBadgeHidden]="unreadNotifications === 0"
+          matBadgeColor="warn"
+          (click)="openNotifications()"
+        >
           <mat-icon>notifications</mat-icon>
         </button>
-        <button mat-icon-button class="settings-btn">
-          <mat-icon>settings</mat-icon>
-        </button>
-        <button mat-icon-button class="user-btn">
+        <button mat-icon-button class="user-btn" aria-label="Profile" [matMenuTriggerFor]="profileMenu">
           <mat-icon>account_circle</mat-icon>
         </button>
-        <button mat-icon-button class="logout-btn" (click) = "signOut()">
+        <button mat-icon-button class="logout-btn" (click)="signOut()" aria-label="Logout">
           <mat-icon>logout</mat-icon>
         </button>
       </div>
-    </div>
-    <div class="content-area">
+    </header>
+
+    <nav class="title-nav">
+      <button
+        type="button"
+        *ngFor="let item of topNavItems"
+        [routerLink]="item.route"
+        routerLinkActive="active"
+        (click)="navigateTo(item.route)"
+      >
+        {{ item.label }}
+      </button>
+    </nav>
+
+    <main class="content-area">
       <router-outlet></router-outlet>
-    </div>
-    <div class="bottom-bar">
-      <div class="copyright">
-        © 2024 F3 Technology. All rights reserved.
-      </div>
+    </main>
+
+    <footer class="bottom-bar">
+      <div class="copyright">© {{ currentYear }} eLibrary. Crafted for modern readers.</div>
       <div class="social-links">
-        <a href="#"><mat-icon>facebook</mat-icon></a>
-        <a href="#"><mat-icon>twitter</mat-icon></a>
-        <a href="#"><mat-icon>linkedin</mat-icon></a>
+        <a href="#" aria-label="Announcements">Announcements</a>
+        <a href="#" aria-label="Support">Support</a>
+        <a href="#" aria-label="Privacy">Privacy</a>
       </div>
-    </div>
+    </footer>
   </div>
 </div>
+
+<mat-menu #profileMenu="matMenu" class="profile-menu">
+  <div class="profile-menu-header">
+    <mat-icon>account_circle</mat-icon>
+    <div>
+      <strong>{{ sessionRoleLabel }}</strong>
+      <span>{{ sessionEmail || 'Signed in' }}</span>
+    </div>
+  </div>
+  <button
+    mat-menu-item
+    type="button"
+    *ngFor="let item of profileMenuLinks"
+    [routerLink]="item.route"
+    (click)="navigateTo(item.route)"
+  >
+    <mat-icon>{{ item.icon }}</mat-icon>
+    <span>{{ item.label }}</span>
+  </button>
+  <button mat-menu-item (click)="signOut()">
+    <mat-icon>logout</mat-icon>
+    <span>Sign out</span>
+  </button>
+</mat-menu>

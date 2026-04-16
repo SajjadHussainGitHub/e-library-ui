@@ -1,45 +1,232 @@
-.dashboard-content {
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+.catalog-page {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.catalog-hero {
+  background: linear-gradient(135deg, #1f4f8a, #1e74b9);
+  color: #fff;
+  border-radius: 1rem;
+  padding: 1.4rem;
+  box-shadow: 0 12px 24px rgba(31, 79, 138, 0.2);
+}
+
+.catalog-hero h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.catalog-hero p {
+  margin: 0.45rem 0 0;
+  color: #e6eff8;
+}
+
+.hero-meta {
+  margin-top: 0.8rem;
+}
+
+.hero-meta span {
+  display: inline-flex;
+  background: rgba(255, 255, 255, 0.18);
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.82rem;
+}
+
+.action-message {
+  margin: 0;
+  background: #e8f2ff;
+  color: #1d4f84;
+  border: 1px solid #cde2f8;
+  border-radius: 0.7rem;
+  padding: 0.65rem 0.8rem;
+  font-size: 0.9rem;
+}
+
+.subject-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  align-items: center;
+}
+
+.subject-chip {
+  border: 1px solid #c9d6ea;
+  background: #fff;
+  color: #214b78;
+  border-radius: 999px;
+  padding: 0.4rem 0.85rem;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.subject-chip:hover {
+  background: #f0f6fd;
+  border-color: #9eb8d9;
+}
+
+.subject-chip.active {
+  background: #1f69ab;
+  border-color: #1f69ab;
+  color: #fff;
+}
+
+.empty-hint {
+  margin: 0;
+  font-size: 0.88rem;
+  color: #60738c;
+}
+
+.subject-pill {
+  background: #e3eef9 !important;
+  color: #0d3d66 !important;
+  font-weight: 600;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.section-header h3 {
+  margin: 0;
+  color: #10233c;
+}
+
+.section-header span {
+  font-size: 0.85rem;
+  color: #60738c;
+}
+
+.book-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.featured {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.all-books {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.book-card {
+  background: #fff;
+  border: 1px solid #e5ebf3;
+  border-radius: 0.9rem;
+  padding: 1rem;
+  display: grid;
+  gap: 0.7rem;
+  box-shadow: 0 8px 18px rgba(17, 37, 64, 0.05);
+}
+
+.book-cover {
+  width: 100%;
+  border-radius: 0.8rem;
+  overflow: hidden;
+  background: #eff4fb;
+  aspect-ratio: 3 / 2;
+}
+
+.compact-cover {
+  aspect-ratio: 4 / 2;
+}
+
+.book-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.cover-fallback {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #3f6086;
+  background: linear-gradient(135deg, #dbe8f7, #f0f5fc);
+}
+
+.book-card h4 {
+  margin: 0;
+  color: #17304e;
+}
+
+.author {
+  margin: 0;
+  color: #4f6782;
+  font-size: 0.9rem;
+}
+
+.summary {
+  margin: 0;
+  color: #5f7188;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.book-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.book-meta span,
+.book-tags span {
+  font-size: 0.78rem;
+  background: #ecf3fc;
+  color: #214b78;
+  border-radius: 999px;
+  padding: 0.3rem 0.6rem;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.rating {
+  color: #826216;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.card-footer button {
+  border: none;
+  border-radius: 0.6rem;
+  padding: 0.45rem 0.85rem;
+  background: #1f69ab;
+  color: #fff;
+  cursor: pointer;
+}
+
+.card-footer button:disabled {
+  background: #a8bfd8;
+  cursor: not-allowed;
+}
+
+.book-tags {
+  display: flex;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 600px) {
+  .catalog-hero {
+    padding: 1rem;
   }
-  
-  h2 {
-    font-size: 2rem;
-    font-weight: 500;
-    margin-bottom: 20px;
-    color: #333;
+
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
   }
-  
-  h3 {
-    font-size: 1.5rem;
-    font-weight: 400;
-    margin-top: 30px;
-    margin-bottom: 15px;
-    color: #555;
-  }
-  
-  .recommended-books {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-  }
-  
-  .book-card {
-    width: 150px;
-    height: 200px;
-    background-color: #e6f7ff;
-    border-radius: 8px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
-    border: 1px solid #1890ff;
-    transition: transform 0.2s ease;
-  }
-  
-  .book-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  }
+}

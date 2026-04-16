@@ -1,10 +1,93 @@
-<div class="dashboard-content">
-    <h2>Dashboard</h2>
-    <p>Welcome to the eLibrary Dashboard.</p>
-    <h3>Recommended for You</h3>
-    <div class="recommended-books">
-      <div class="book-card">Book 1</div>
-      <div class="book-card">Book 2</div>
-      <div class="book-card">Book 3</div>
+<section class="catalog-page">
+  <div class="catalog-hero">
+    <h2>Library Catalog</h2>
+    <p>Browse by subject—Science, IT, Arts, and more—or explore the full catalog.</p>
+    <div class="hero-meta">
+      <span>{{ borrowedCount }} books currently borrowed</span>
     </div>
   </div>
+
+  <p class="action-message" *ngIf="actionMessage">{{ actionMessage }}</p>
+
+  <div class="subject-filters" role="group" aria-label="Filter by subject">
+    <button
+      type="button"
+      *ngFor="let subject of subjectFilters"
+      class="subject-chip"
+      [class.active]="selectedSubject === subject"
+      (click)="setSubject(subject)"
+    >
+      {{ subject }}
+    </button>
+  </div>
+
+  <div class="section-header">
+    <h3>Featured Picks</h3>
+    <span *ngIf="selectedSubject === 'All'; else featuredSubjectHint">Curated for this week</span>
+    <ng-template #featuredSubjectHint>
+      <span>{{ filteredFeaturedBooks.length }} in {{ selectedSubject }}</span>
+    </ng-template>
+  </div>
+  <p class="empty-hint" *ngIf="filteredFeaturedBooks.length === 0 && selectedSubject !== 'All'">
+    No featured titles in this subject—see “All catalog books” below.
+  </p>
+  <div class="book-grid featured">
+    <article class="book-card" *ngFor="let book of filteredFeaturedBooks">
+      <div class="book-cover">
+        <img *ngIf="book.coverImage; else fallbackCover" [src]="book.coverImage" [alt]="book.title + ' cover'" />
+        <ng-template #fallbackCover>
+          <div class="cover-fallback">{{ book.title.charAt(0) }}</div>
+        </ng-template>
+      </div>
+      <div class="book-meta">
+        <span class="subject-pill">{{ book.subject }}</span>
+        <span>{{ book.genre }}</span>
+        <span>{{ book.format }}</span>
+      </div>
+      <h4>{{ book.title }}</h4>
+      <p class="author">{{ book.author }} • {{ book.year }}</p>
+      <p class="summary">{{ book.summary }}</p>
+      <div class="card-footer">
+        <span class="rating">⭐ {{ book.rating }}</span>
+        <button type="button" (click)="borrow(book)" [disabled]="isBorrowed(book)">
+          {{ isBorrowed(book) ? 'Borrowed' : 'Borrow' }}
+        </button>
+      </div>
+    </article>
+  </div>
+
+  <div class="section-header">
+    <h3>All Catalog Books</h3>
+    <span *ngIf="selectedSubject === 'All'; else filteredCount">
+      {{ allCatalogBooks.length }} books available
+    </span>
+    <ng-template #filteredCount>
+      <span>{{ filteredCatalogBooks.length }} in {{ selectedSubject }} ({{ allCatalogBooks.length }} total)</span>
+    </ng-template>
+  </div>
+  <p class="empty-hint" *ngIf="filteredCatalogBooks.length === 0">No books in this subject yet.</p>
+  <div class="book-grid all-books">
+    <article class="book-card compact" *ngFor="let book of filteredCatalogBooks">
+      <div class="book-cover compact-cover">
+        <img *ngIf="book.coverImage; else listFallbackCover" [src]="book.coverImage" [alt]="book.title + ' cover'" />
+        <ng-template #listFallbackCover>
+          <div class="cover-fallback">{{ book.title.charAt(0) }}</div>
+        </ng-template>
+      </div>
+      <h4>{{ book.title }}</h4>
+      <p class="author">{{ book.author }}</p>
+      <p class="summary">{{ book.summary }}</p>
+      <div class="book-tags">
+        <span class="subject-pill">{{ book.subject }}</span>
+        <span>{{ book.genre }}</span>
+        <span>{{ book.year }}</span>
+        <span>⭐ {{ book.rating }}</span>
+      </div>
+      <div class="card-footer">
+        <button type="button" (click)="borrow(book)" [disabled]="isBorrowed(book)">
+          {{ isBorrowed(book) ? 'Borrowed' : 'Borrow' }}
+        </button>
+      </div>
+    </article>
+  </div>
+</section>

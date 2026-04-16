@@ -1,0 +1,87 @@
+.preferences-page {
+  display: grid;
+}
+
+.preferences-card {
+  background: #fff;
+  border: 1px solid #e4ebf5;
+  border-radius: 14px;
+  box-shadow: 0 10px 20px rgba(17, 37, 64, 0.06);
+  padding: 1.1rem;
+}
+
+.preferences-card h2,
+.preferences-card p {
+  margin-top: 0;
+}
+
+.preferences-card p {
+  color: #5f748f;
+}
+
+.preference-list {
+  display: grid;
+  gap: 0.75rem;
+  margin: 1rem 0;
+}
+
+.preference-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.8rem;
+  align-items: center;
+  border: 1px solid #e7eef7;
+  border-radius: 10px;
+  padding: 0.75rem;
+}
+
+.preference-item h3,
+.preference-item p {
+  margin: 0;
+}
+
+.preference-item h3 {
+  color: #1b3554;
+  font-size: 1rem;
+}
+
+.preference-item button {
+  min-width: 64px;
+  border-radius: 999px;
+  border: none;
+  padding: 0.35rem 0.6rem;
+  background: #d3deeb;
+  color: #29476b;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.preference-item button.enabled {
+  background: #2f6fa8;
+  color: #fff;
+}
+
+.save-btn {
+  border: none;
+  border-radius: 8px;
+  background: #1f5e98;
+  color: #fff;
+  padding: 0.5rem 0.9rem;
+  cursor: pointer;
+}
+
+.action-message {
+  margin: 0.8rem 0 0;
+  color: #1d4f84;
+  background: #e8f2ff;
+  border: 1px solid #cde2f8;
+  border-radius: 8px;
+  padding: 0.55rem 0.75rem;
+}
+
+@media (max-width: 640px) {
+  .preference-item {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
